@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.zimu.dao.knowledgeTypeDao">
+
+	<insert id="save" parameterType="com.zimu.entity.knowledgeType">
+		insert into knowledgeType (typeID,parentTypeID,typeName) values
+		(#{typeID},#{parentTypeID},#{typeName})
+	</insert>
+
+	<select id="findbyid" parameterType="Integer"
+		resultType="com.zimu.entity.knowledgeType">
+		select * from knowledgeType where typeID = #{typeID}
+	</select>
+	<select id="findAll" resultType="com.zimu.entity.knowledgeType">
+		select * from knowledgeType 
+	</select>
+
+	<update id="update" parameterType="com.zimu.entity.knowledgeType">
+		update knowledgeType 
+		<set>
+		  <if test="parentTypeID!=null">parentTypeID=#{parentTypeID},</if>
+		  <if test="typeName!=null">typeName=#{typeName}</if>
+		</set>
+		where typeID=#{typeID}
+	</update>
+
+	<delete id="delect" parameterType="Integer">
+		delete from knowledgeType where typeID=#{typeID,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

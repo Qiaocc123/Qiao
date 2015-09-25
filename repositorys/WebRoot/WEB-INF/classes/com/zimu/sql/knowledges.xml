@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.zimu.dao.knowledgesDao">
+
+	<insert id="saves" parameterType="com.zimu.entity.knowledges">
+		insert into knowledges (knowledgeID,typeID,createrID,createTime,title,key,abstracts,content,contentAddress,attachment,state,modifier,modifyTime,valid,validDate,replyScope,openness,authorityScope,knowledgePath,remark) values
+		(#{knowledgeID},#{typeID},#{createrID},#{createTime},#{title},#{key},#{abstracts},#{content},#{contentAddress},#{attachment},#{state},#{modifier},#{modifyTime},#{valid},#{validDate},#{replyScope},#{openness},#{authorityScope},#{knowledgePath},#{remark})
+	</insert>
+
+	<select id="find" parameterType="Integer"
+		resultType="com.zimu.entity.knowledges">
+		select * from knowledges where typeID = #{typeID}
+	</select>
+
+	<update id="updates" parameterType="com.zimu.entity.knowledges">
+		update knowledges set knowledgeID=#{knowledgeID},createrID=#{createrID},createTime=#{createTime},title=#{title},key=#{key},abstracts=#{abstracts},content=#{content},contentAddress=#{contentAddress},attachment=#{attachment},state=#{state},modifier=#{modifier},modifyTime=#{modifyTime},valid=#{valid},validDate=#{validDate},replyScope=#{replyScope},openness=#{openness},authorityScope=#{authorityScope},knowledgePath=#{knowledgePath},remark=#{remark}
+		where typeID=#{typeID}
+	</update>
+
+	<delete id="delects" parameterType="Integer">
+		delete from knowledges where typeID=#{typeID}
+	</delete>
+
+</mapper>
